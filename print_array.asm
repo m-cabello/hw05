@@ -13,8 +13,9 @@ printA:
     # TODO: Write your function code here
 
 main:
-
 	# TODO: Write your main function code here
-
+    
 exit:
 	# TODO: Write code to properly exit a SPIM simulation
+    li $v0, 10
+    syscall
