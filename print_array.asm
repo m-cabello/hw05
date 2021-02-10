@@ -8,7 +8,8 @@
 	# TODO: Write your initializations here
     myArray: .word 1 2 3 4 5 6 7 8 9 10
     answer: .asciiz "The contents of the array are:\n"
-    nline: .asciiz " "
+    nline: .asciiz "\n"
+
 .text
 printA:
     # TODO: Write your function code here
@@ -20,6 +21,10 @@ printA:
     li $v0, 1      
     move $a0, $t2
     syscall
+    # comma and space 
+    li $v0, 4
+    la $a0, nline
+    syscall
     # increment counter
     addi $t0, $t0, 1
     j printA
@@ -30,6 +35,7 @@ main:
     li $v0, 4
     la $a0, answer
     syscall
+
     li $t0, 0
     la $a1, myArray
     jal printA
