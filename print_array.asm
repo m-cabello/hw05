@@ -13,6 +13,8 @@
 
 .text
 printA:
+    move $t5, $a0
+loop:
     # TODO: Write your function code here
     bge $t0, $a1, exit_printA
     # load word and go to next one
@@ -28,7 +30,7 @@ printA:
     syscall
     # increment counter
     addi $t0, $t0, 1
-    j printA
+    j loop
 exit_printA:
     jr $ra
 main:
@@ -38,7 +40,7 @@ main:
     syscall
 
     li $t0, 0
-    la $t5, myArray
+    la $a0, myArray
     lw $a1, myArraySize 
     jal printA
 exit:
