@@ -7,21 +7,22 @@
 .data
 	# TODO: Write your initializations here
     myArray: .word 1 2 3 4 5 6 7 8 9 10
+    myArraySize: .word 10
     answer: .asciiz "The contents of the array are:\n"
     nline: .asciiz "\n"
 
 .text
 printA:
     # TODO: Write your function code here
-    bge $t0, 10, exit_printA
+    bge $t0, $a1, exit_printA
     # load word and go to next one
-    lw $t2, 0($a1)
-    addi $a1, $a1, 4
+    lw $t2, 0($t5)
+    addi $t5, $t5, 4
     # print value
     li $v0, 1      
     move $a0, $t2
     syscall
-    # newlin
+    # newline
     li $v0, 4
     la $a0, nline
     syscall
@@ -37,8 +38,8 @@ main:
     syscall
 
     li $t0, 0
-    li $a0, 10
-    la $a1, myArray
+    la $t5, myArray
+    lw $a1, myArraySize 
     jal printA
 exit:
 	# TODO: Write code to properly exit a SPIM simulation
