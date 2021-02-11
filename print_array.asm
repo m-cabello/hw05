@@ -21,7 +21,7 @@ printA:
     li $v0, 1      
     move $a0, $t2
     syscall
-    # comma and space 
+    # newlin
     li $v0, 4
     la $a0, nline
     syscall
@@ -37,6 +37,7 @@ main:
     syscall
 
     li $t0, 0
+    li $a0, 10
     la $a1, myArray
     jal printA
 exit:
